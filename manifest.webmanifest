@@ -1,0 +1,33 @@
+{
+  "name": "Daba-Delivery — Smart Zone Delivery",
+  "short_name": "Daba",
+  "description": "Smart zone-based delivery. One driver per zone, tap-to-talk communication, and live Dijkstra routing.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#F4F7FC",
+  "theme_color": "#FF6B2C",
+  "lang": "en",
+  "categories": ["business", "productivity", "navigation"],
+  "icons": [
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

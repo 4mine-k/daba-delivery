@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Daba-Delivery — Scan to install</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root{ --brand:#FF6B2C; --brand-2:#1B2A5B; --accent:#12B6A8; --ink:#16233D; --muted:#64748B; }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:"Inter",system-ui,sans-serif;color:var(--ink);min-height:100vh;
+      background:
+        radial-gradient(900px 500px at 10% -10%, rgba(255,107,44,.18), transparent),
+        radial-gradient(900px 500px at 110% 110%, rgba(18,182,168,.18), transparent),
+        linear-gradient(160deg,#F4F7FC,#EAF0FA);
+      display:grid;place-items:center;padding:30px}
+    .card{background:rgba(255,255,255,.75);backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.6);
+      border-radius:26px;box-shadow:0 30px 70px -25px rgba(27,42,91,.4);max-width:460px;width:100%;
+      padding:34px;text-align:center}
+    .logo{display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:6px}
+    .logo strong{font-family:"Sora";font-size:1.3rem;font-weight:800}
+    .logo strong span{color:var(--brand)}
+    h1{font-family:"Sora";font-size:1.7rem;margin:14px 0 6px}
+    .sub{color:var(--muted);font-size:.95rem;margin-bottom:22px}
+    .qr-box{background:#fff;border-radius:20px;padding:18px;display:inline-block;
+      box-shadow:0 16px 40px -18px rgba(27,42,91,.5);border:1px solid rgba(27,42,91,.08)}
+    .qr-box img{display:block;width:260px;height:260px;image-rendering:pixelated}
+    .tabs{display:flex;gap:6px;background:rgba(27,42,91,.06);padding:5px;border-radius:12px;margin:0 0 20px}
+    .tab{flex:1;border:0;background:transparent;padding:11px;border-radius:9px;font-weight:600;color:var(--muted);
+      cursor:pointer;font-family:inherit;transition:.25s;font-size:.88rem}
+    .tab.active{background:#fff;color:var(--ink);box-shadow:0 6px 16px -8px rgba(27,42,91,.4)}
+    .url{margin-top:16px;font-family:"Sora";font-weight:600;color:var(--brand-2);word-break:break-all;font-size:.95rem}
+    .hint{margin-top:18px;background:rgba(18,182,168,.1);color:#0F766E;border-radius:12px;padding:12px 14px;
+      font-size:.84rem;font-weight:500;line-height:1.5;text-align:left}
+    .steps{margin-top:16px;text-align:left;color:var(--muted);font-size:.84rem;line-height:1.6}
+    .steps b{color:var(--ink)}
+    .pane{display:none}
+    .pane.active{display:block;animation:fade .35s ease}
+    @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="logo">
+      <svg viewBox="0 0 48 48" width="30" height="30" aria-hidden="true">
+        <path d="M24 3 L43 13 V35 L24 45 L5 35 V13 Z" fill="url(#g)"/>
+        <circle cx="24" cy="24" r="6" fill="#fff"/>
+        <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#FF6B2C"/><stop offset="1" stop-color="#1B2A5B"/>
+        </linearGradient></defs>
+      </svg>
+      <strong>Daba<span>Delivery</span></strong>
+    </div>
+    <h1>Scan to install 📲</h1>
+    <p class="sub">Point your phone camera at the code to open & install the app.</p>
+
+    <div class="tabs">
+      <button class="tab active" data-pane="lan">Same Wi-Fi</button>
+      <button class="tab" data-pane="loc">This device</button>
+    </div>
+
+    <div class="pane active" id="pane-lan">
+      <div class="qr-box"><img src="qr-lan.png" alt="QR code — local network" /></div>
+      <div class="url">http://192.168.100.14:5173</div>
+      <div class="hint">📶 <b>Use this during your presentation.</b> Your phone must be on the <b>same Wi-Fi</b> as this computer, and the Daba server must be running (Start-Daba.bat).</div>
+      <div class="steps">
+        <b>On the phone, after scanning:</b><br>
+        • <b>Android (Chrome):</b> menu ⋮ → “Install app”.<br>
+        • <b>iPhone (Safari):</b> Share → “Add to Home Screen”.
+      </div>
+    </div>
+
+    <div class="pane" id="pane-loc">
+      <div class="qr-box"><img src="qr-localhost.png" alt="QR code — localhost" /></div>
+      <div class="url">http://localhost:5173</div>
+      <div class="hint">💻 For opening on <b>this same computer</b> only. A phone cannot reach “localhost” — use the “Same Wi-Fi” tab, or publish online for a public QR.</div>
+    </div>
+  </div>
+
+  <script>
+    document.querySelectorAll(".tab").forEach(t =>
+      t.addEventListener("click", () => {
+        document.querySelectorAll(".tab").forEach(x => x.classList.remove("active"));
+        document.querySelectorAll(".pane").forEach(x => x.classList.remove("active"));
+        t.classList.add("active");
+        document.getElementById("pane-" + t.dataset.pane).classList.add("active");
+      })
+    );
+  </script>
+</body>
+</html>

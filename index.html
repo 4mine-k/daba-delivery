@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Daba-Delivery — Smart Zone Delivery</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <!-- PWA: installable app -->
+  <link rel="manifest" href="manifest.webmanifest" />
+  <meta name="theme-color" content="#FF6B2C" />
+  <link rel="apple-touch-icon" href="icons/icon-192.png" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="Daba" />
+</head>
+<body>
+  <!-- Animated background -->
+  <div class="bg-aurora">
+    <span class="blob b1"></span>
+    <span class="blob b2"></span>
+    <span class="blob b3"></span>
+    <canvas id="particles"></canvas>
+  </div>
+
+  <!-- ============ AUTH SCREEN ============ -->
+  <section id="auth" class="screen active">
+    <div class="auth-wrap">
+      <div class="auth-hero">
+        <div class="logo">
+          <div class="logo-mark">
+            <svg viewBox="0 0 48 48" width="40" height="40" aria-hidden="true">
+              <path d="M24 3 L43 13 V35 L24 45 L5 35 V13 Z" fill="url(#g1)" />
+              <path d="M24 3 L43 13 L24 23 L5 13 Z" fill="#fff" opacity=".25"/>
+              <circle cx="24" cy="24" r="6" fill="#fff"/>
+              <defs>
+                <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0" stop-color="var(--brand)"/>
+                  <stop offset="1" stop-color="var(--brand-2)"/>
+                </linearGradient>
+              </defs>
+            </svg>
+          </div>
+          <div class="logo-text">
+            <strong>Daba<span>Delivery</span></strong>
+            <small>Smart Zone Delivery</small>
+          </div>
+        </div>
+
+        <h1 class="hero-title">Delivery, <em>reinvented</em> by zones.</h1>
+        <p class="hero-sub">The city splits into smart zones by traffic & demand. One driver per zone. Zero typing — just tap to talk. Routes solved live with Dijkstra.</p>
+
+        <ul class="hero-points">
+          <li><span class="dot"></span> Smart city zoning by traffic & demand</li>
+          <li><span class="dot"></span> Tap-to-Talk — no keyboard needed</li>
+          <li><span class="dot"></span> Live shortest-path routing (Dijkstra)</li>
+          <li><span class="dot"></span> One role, one tap: Customer or Driver</li>
+        </ul>
+      </div>
+
+      <div class="auth-card glass">
+        <div class="tabs">
+          <button class="tab active" data-tab="login">Log in</button>
+          <button class="tab" data-tab="signup">Create account</button>
+        </div>
+
+        <form id="loginForm" class="auth-form active" autocomplete="off">
+          <label>Email
+            <input type="email" name="email" placeholder="you@daba.com" required />
+          </label>
+          <label>Password
+            <input type="password" name="password" placeholder="••••••••" required />
+          </label>
+          <p class="role-label">Choose your role</p>
+          <div class="role-pick">
+            <button type="button" class="role-opt active" data-role="customer">
+              <span class="role-ico">🧑</span>
+              <strong>Customer</strong>
+              <small>Send a delivery</small>
+            </button>
+            <button type="button" class="role-opt" data-role="driver">
+              <span class="role-ico">🛵</span>
+              <strong>Driver</strong>
+              <small>Own your zone</small>
+            </button>
+          </div>
+          <button class="btn-primary" type="submit">Enter Daba-Delivery →</button>
+        </form>
+
+        <form id="signupForm" class="auth-form" autocomplete="off">
+          <label>Full name
+            <input type="text" name="name" placeholder="Amine B." required />
+          </label>
+          <label>Email
+            <input type="email" name="email" placeholder="you@daba.com" required />
+          </label>
+          <label>Password
+            <input type="password" name="password" placeholder="Create a password" required />
+          </label>
+          <p class="role-label">Choose your role</p>
+          <div class="role-pick">
+            <button type="button" class="role-opt active" data-role="customer">
+              <span class="role-ico">🧑</span>
+              <strong>Customer</strong>
+              <small>Send a delivery</small>
+            </button>
+            <button type="button" class="role-opt" data-role="driver">
+              <span class="role-ico">🛵</span>
+              <strong>Driver</strong>
+              <small>Own your zone</small>
+            </button>
+          </div>
+          <button class="btn-primary" type="submit">Create account →</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ APP SHELL ============ -->
+  <section id="app" class="screen">
+    <header class="topbar glass">
+      <div class="logo small">
+        <div class="logo-mark">
+          <svg viewBox="0 0 48 48" width="28" height="28" aria-hidden="true">
+            <path d="M24 3 L43 13 V35 L24 45 L5 35 V13 Z" fill="url(#g2)" />
+            <circle cx="24" cy="24" r="6" fill="#fff"/>
+            <defs><linearGradient id="g2" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="var(--brand)"/><stop offset="1" stop-color="var(--brand-2)"/>
+            </linearGradient></defs>
+          </svg>
+        </div>
+        <strong>Daba<span>Delivery</span></strong>
+      </div>
+
+      <nav class="nav">
+        <button class="nav-btn active" data-view="dashboard">Dashboard</button>
+        <button class="nav-btn" data-view="map">Live Map</button>
+        <button class="nav-btn" data-view="role">My Space</button>
+      </nav>
+
+      <div class="user-chip">
+        <span id="userRoleBadge" class="badge">Customer</span>
+        <span id="userName">Guest</span>
+        <button id="logoutBtn" class="btn-ghost" title="Log out">⎋</button>
+      </div>
+    </header>
+
+    <main class="views">
+      <!-- DASHBOARD -->
+      <div class="view active" id="view-dashboard"></div>
+      <!-- MAP -->
+      <div class="view" id="view-map"></div>
+      <!-- ROLE SPACE (customer/driver) -->
+      <div class="view" id="view-role"></div>
+    </main>
+  </section>
+
+  <!-- Toast -->
+  <div id="toast" class="toast"></div>
+
+  <!-- PWA install button (shown when installable) -->
+  <button id="installBtn" class="install-btn" hidden>⬇️ Install app</button>
+
+  <script src="app.js"></script>
+  <script>
+    /* ---- PWA: register service worker + install prompt ---- */
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", () => {
+        navigator.serviceWorker.register("sw.js").catch(() => {});
+      });
+    }
+    let deferredPrompt = null;
+    const installBtn = document.getElementById("installBtn");
+    window.addEventListener("beforeinstallprompt", (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      installBtn.hidden = false;
+    });
+    installBtn.addEventListener("click", async () => {
+      if (!deferredPrompt) return;
+      deferredPrompt.prompt();
+      const { outcome } = await deferredPrompt.userChoice;
+      deferredPrompt = null;
+      installBtn.hidden = true;
+    });
+    window.addEventListener("appinstalled", () => { installBtn.hidden = true; });
+  </script>
+</body>
+</html>

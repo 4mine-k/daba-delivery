@@ -56,11 +56,21 @@
     <p class="sub">Point your phone camera at the code to open & install the app.</p>
 
     <div class="tabs">
-      <button class="tab active" data-pane="lan">Same Wi-Fi</button>
+      <button class="tab active" data-pane="pub">🌍 Anyone (public)</button>
+      <button class="tab" data-pane="lan">Same Wi-Fi</button>
       <button class="tab" data-pane="loc">This device</button>
     </div>
-
-    <div class="pane active" id="pane-lan">
+    <div class="pane active" id="pane-pub">
+      <div class="qr-box"><img src="qr-public.png" alt="QR code — public URL" /></div>
+      <div class="url">https://4mine-k.github.io/daba-delivery/</div>
+      <div class="hint">🌍 <b>Works everywhere</b> — any phone, any network (4G/5G or any Wi-Fi). Scan to open & install the app.</div>
+      <div class="steps">
+        <b>After scanning:</b><br>
+        • <b>Android (Chrome):</b> menu ⋮ → “Install app”.<br>
+        • <b>iPhone (Safari):</b> Share → “Add to Home Screen”.
+      </div>
+    </div>
+    <div class="pane" id="pane-lan">
       <div class="qr-box"><img src="qr-lan.png" alt="QR code — local network" /></div>
       <div class="url">http://192.168.100.14:5173</div>
       <div class="hint">📶 <b>Use this during your presentation.</b> Your phone must be on the <b>same Wi-Fi</b> as this computer, and the Daba server must be running (Start-Daba.bat).</div>

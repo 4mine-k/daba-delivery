@@ -1,7 +1,7 @@
 /* ============================================================
    DABA-DELIVERY — Service Worker (offline support)
    ============================================================ */
-const CACHE = "daba-delivery-v1";
+const CACHE = "daba-delivery-v2";
 const ASSETS = [
   "./",
   "./index.html",
